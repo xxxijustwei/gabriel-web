@@ -28,7 +28,7 @@ export const Client = () => {
     return (
         <div
             className={cn(
-                "w-full max-w-2xl px-8 flex flex-col gap-4 p-4",
+                "w-full max-w-4xl px-8 flex flex-col gap-4 p-4",
                 messages.length > 0 && "h-dvh",
             )}
         >

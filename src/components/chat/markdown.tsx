@@ -1,12 +1,21 @@
+import { cn } from "@/lib/utils";
 import Link from "next/link";
-import React, { memo } from "react";
+import type React from "react";
+import { memo } from "react";
 import ReactMarkdown, { type Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { CodeBlock } from "./code-block";
 
 const components: Partial<Components> = {
-    // @ts-expect-error
-    code: CodeBlock,
+    code: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
+        <code
+            className={cn(
+                "relative rounded bg-[#1e1e1e] p-2 font-mono text-sm whitespace-pre-wrap break-words",
+                className,
+            )}
+            data-line-numbers
+            {...props}
+        />
+    ),
     pre: ({ children }) => <>{children}</>,
     ol: ({ node, children, ...props }) => {
         return (
