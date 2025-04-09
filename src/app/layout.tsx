@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "@/styles/globals.css";
+import { unboundedFont } from "@/fonts";
 
 export const metadata: Metadata = {
     title: "Gabriel",
@@ -8,8 +9,8 @@ export const metadata: Metadata = {
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
     return (
-        <html lang="en">
-            <body>{children}</body>
+        <html lang="en" className={unboundedFont.variable}>
+            <body className="font-unbounded">{children}</body>
         </html>
     );
 };
