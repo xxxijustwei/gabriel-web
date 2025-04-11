@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import type { UIMessage } from "ai";
 import equal from "fast-deep-equal";
 import { AnimatePresence, motion } from "framer-motion";
-import { SparklesIcon } from "lucide-react";
+import { Accessibility } from "lucide-react";
 import { memo } from "react";
 import { Markdown } from "./markdown";
 
@@ -28,7 +28,7 @@ const PurePreviewMessage = ({
                     {message.role === "assistant" && (
                         <div className="size-8 flex items-center rounded-full justify-center ring-1 shrink-0 ring-border bg-background">
                             <div className="translate-y-px">
-                                <SparklesIcon size={14} />
+                                <Accessibility size={24} />
                             </div>
                         </div>
                     )}
@@ -81,7 +81,7 @@ export const ThinkingMessage = () => {
                 )}
             >
                 <div className="size-8 flex items-center rounded-full justify-center ring-1 shrink-0 ring-border">
-                    <SparklesIcon size={14} />
+                    <Accessibility size={24} />
                 </div>
 
                 <div className="flex flex-col gap-2 w-full">
