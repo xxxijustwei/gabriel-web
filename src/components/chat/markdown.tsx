@@ -9,7 +9,7 @@ const components: Partial<Components> = {
     code: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
         <code
             className={cn(
-                "relative rounded bg-[#1e1e1e] p-2 font-mono text-sm whitespace-pre-wrap break-words",
+                "relative rounded bg-[#1e1e1e] text-primary-foreground px-2 py-1 font-mono text-sm whitespace-pre-wrap break-words",
                 className,
             )}
             data-line-numbers

@@ -28,7 +28,10 @@ const PurePreviewMessage = ({
                     {message.role === "assistant" && (
                         <div className="size-8 flex items-center rounded-full justify-center ring-1 shrink-0 ring-border bg-background">
                             <div className="translate-y-px">
-                                <Accessibility size={24} />
+                                <Accessibility
+                                    size={24}
+                                    className={isLoading ? "animate-spin" : ""}
+                                />
                             </div>
                         </div>
                     )}
@@ -81,7 +84,7 @@ export const ThinkingMessage = () => {
                 )}
             >
                 <div className="size-8 flex items-center rounded-full justify-center ring-1 shrink-0 ring-border">
-                    <Accessibility size={24} />
+                    <Accessibility size={24} className="animate-spin" />
                 </div>
 
                 <div className="flex flex-col gap-2 w-full">
