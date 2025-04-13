@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import type { UIMessage } from "ai";
 import equal from "fast-deep-equal";
 import { AnimatePresence, motion } from "framer-motion";
-import { Accessibility } from "lucide-react";
+import { Accessibility, Check, Loader2 } from "lucide-react";
 import { memo } from "react";
 import { Markdown } from "./markdown";
 
@@ -36,15 +36,50 @@ const PurePreviewMessage = ({
                         </div>
                     )}
 
-                    <div
-                        data-testid="message-content"
-                        className={cn(
-                            "flex flex-col gap-4",
-                            message.role === "user" &&
-                                "bg-primary text-primary-foreground px-3 py-2 rounded-xl",
-                        )}
-                    >
-                        <Markdown>{message.content}</Markdown>
+                    <div className="flex flex-col gap-2 w-full">
+                        {message.parts.map((item, index) => {
+                            const { type } = item;
+                            const key = `msg-${message.id}-p-${index}`;
+
+                            if (type === "tool-invocation") {
+                                const { toolInvocation } = item;
+                                const { toolName, state } = toolInvocation;
+                                return (
+                                    <div className="flex gap-2 items-center w-full py-1">
+                                        <Loader2
+                                            className={cn(
+                                                "size-5 animate-spin",
+                                                state === "result" && "hidden",
+                                            )}
+                                        />
+                                        <Check
+                                            className={cn(
+                                                "size-5",
+                                                state === "call" && "hidden",
+                                            )}
+                                        />
+                                        <div className="flex flex-col gap-4 text-muted-foreground">
+                                            Calling Tool...
+                                        </div>
+                                    </div>
+                                );
+                            }
+                            if (type === "text") {
+                                return (
+                                    <div
+                                        key={key}
+                                        data-testid="message-content"
+                                        className={cn(
+                                            "flex flex-col gap-4",
+                                            message.role === "user" &&
+                                                "bg-primary text-primary-foreground px-3 py-2 rounded-xl",
+                                        )}
+                                    >
+                                        <Markdown>{message.content}</Markdown>
+                                    </div>
+                                );
+                            }
+                        })}
                     </div>
                 </div>
             </motion.div>
