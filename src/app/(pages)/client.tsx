@@ -6,14 +6,15 @@ import {
     ChatInputTextarea,
 } from "@/components/chat/chat-input";
 import { Messages } from "@/components/chat/messages";
+import { SuggestionActions } from "@/components/chat/suggestion-actions";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useChat } from "@ai-sdk/react";
-import { ArrowUp, Send, Square } from "lucide-react";
+import { ArrowUp, Square } from "lucide-react";
 
 export const Client = () => {
     const { status, messages, input, setInput, append, stop } = useChat({
-        api: "http://localhost:8080/api/chat",
+        api: `${process.env.NEXT_PUBLIC_API_URL}/api/chat`,
     });
 
     const onSubmit = () => {
@@ -33,6 +34,10 @@ export const Client = () => {
             )}
         >
             <Messages status={status} messages={messages} />
+            <SuggestionActions
+                append={append}
+                className={messages.length > 0 ? "hidden" : ""}
+            />
             <ChatInput
                 value={input}
                 onChange={setInput}

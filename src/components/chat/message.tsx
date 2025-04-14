@@ -18,7 +18,6 @@ const PurePreviewMessage = ({
     return (
         <AnimatePresence>
             <motion.div
-                data-testid={`message-${message.role}`}
                 className="w-full mx-auto max-w-3xl px-4 group/message"
                 initial={{ y: 5, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
@@ -43,9 +42,12 @@ const PurePreviewMessage = ({
 
                             if (type === "tool-invocation") {
                                 const { toolInvocation } = item;
-                                const { toolName, state } = toolInvocation;
+                                const { state } = toolInvocation;
                                 return (
-                                    <div className="flex gap-2 items-center w-full py-1">
+                                    <div
+                                        key={key}
+                                        className="flex gap-2 items-center w-full py-1"
+                                    >
                                         <Loader2
                                             className={cn(
                                                 "size-5 animate-spin",
@@ -68,7 +70,6 @@ const PurePreviewMessage = ({
                                 return (
                                     <div
                                         key={key}
-                                        data-testid="message-content"
                                         className={cn(
                                             "flex flex-col gap-4",
                                             message.role === "user" &&
@@ -104,7 +105,6 @@ export const ThinkingMessage = () => {
 
     return (
         <motion.div
-            data-testid="message-assistant-loading"
             className="w-full mx-auto max-w-3xl px-4 group/message "
             initial={{ y: 5, opacity: 0 }}
             animate={{ y: 0, opacity: 1, transition: { delay: 1 } }}
