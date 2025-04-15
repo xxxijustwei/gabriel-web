@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "@/styles/globals.css";
 import { unboundedFont } from "@/fonts";
 import { Geist_Mono } from "next/font/google";
+import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
     title: "Gabriel",
@@ -19,7 +20,10 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
             lang="en"
             className={`${unboundedFont.variable} ${monoFont.variable}`}
         >
-            <body className="font-unbounded">{children}</body>
+            <body className="font-unbounded">
+                {children}
+                <Toaster />
+            </body>
         </html>
     );
 };

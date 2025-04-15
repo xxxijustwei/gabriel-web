@@ -2,12 +2,15 @@
 
 import { GridPattern } from "@/components/magicui/grid-pattern";
 import { cn } from "@/lib/utils";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
     return (
         <div className="relative grid h-full flex-1 place-items-center overflow-hidden">
             <div className="w-full h-svh flex items-center justify-center z-30">
-                {children}
+                <Provider>{children}</Provider>
             </div>
             <GridPattern
                 squares={[
@@ -33,3 +36,11 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 };
 
 export default Layout;
+
+const Provider = ({ children }: { children: React.ReactNode }) => {
+    return (
+        <QueryClientProvider client={queryClient}>
+            {children}
+        </QueryClientProvider>
+    );
+};
