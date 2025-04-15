@@ -54,8 +54,6 @@ https://github.com/xxxijustwei/gabriel-api
 
 ## 部署到 Vercel
 
-### 安装 Vercel CLI
-
 1. 安装 Vercel CLI
 
    ```bash
