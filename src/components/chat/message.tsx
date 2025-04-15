@@ -76,7 +76,7 @@ const PurePreviewMessage = ({
                                                 "bg-primary text-primary-foreground px-3 py-2 rounded-xl",
                                         )}
                                     >
-                                        <Markdown>{message.content}</Markdown>
+                                        <Markdown>{item.text}</Markdown>
                                     </div>
                                 );
                             }

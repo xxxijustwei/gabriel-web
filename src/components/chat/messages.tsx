@@ -38,7 +38,7 @@ function PureMessages({ status, messages }: MessagesProps) {
                     <ThinkingMessage />
                 )}
 
-            <div ref={messagesEndRef} className="shrink-0 min-w-6 min-h-6" />
+            <div ref={messagesEndRef} className="shrink-0 min-w-2 min-h-2" />
         </div>
     );
 }

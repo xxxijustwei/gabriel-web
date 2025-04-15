@@ -27,48 +27,52 @@ export const Client = () => {
     };
 
     return (
-        <div
-            className={cn(
-                "w-full max-w-3xl px-8 flex flex-col gap-4 p-4",
-                messages.length > 0 && "h-dvh",
-            )}
-        >
-            <Messages status={status} messages={messages} />
-            <SuggestionActions
-                append={append}
-                className={messages.length > 0 ? "hidden" : ""}
-            />
-            <ChatInput
-                value={input}
-                onChange={setInput}
-                className="w-full"
-                onSubmit={onSubmit}
+        <div className="h-full flex items-center">
+            <div
+                className={cn(
+                    "w-full max-w-3xl px-8 flex flex-col gap-4 p-4 mx-auto",
+                    messages.length > 0 && "h-full",
+                )}
             >
-                <ChatInputTextarea
-                    className="max-h-32"
-                    placeholder="Ask me anything..."
-                />
-                <ChatInputActions className="flex items-center justify-end gap-2 pt-2">
-                    <Button
-                        variant="default"
-                        size="icon"
-                        className="h-8 w-8 rounded-full cursor-pointer"
-                        onClick={() => {
-                            if (status !== "ready") {
-                                stop();
-                                return;
-                            }
-                            onSubmit();
-                        }}
+                <Messages status={status} messages={messages} />
+                <div className="flex flex-col gap-2">
+                    <SuggestionActions
+                        append={append}
+                        className={messages.length > 0 ? "hidden" : ""}
+                    />
+                    <ChatInput
+                        value={input}
+                        onChange={setInput}
+                        className="w-full"
+                        onSubmit={onSubmit}
                     >
-                        {status !== "ready" ? (
-                            <Square className="size-5 fill-current" />
-                        ) : (
-                            <ArrowUp className="size-5" />
-                        )}
-                    </Button>
-                </ChatInputActions>
-            </ChatInput>
+                        <ChatInputTextarea
+                            className="max-h-32"
+                            placeholder="Ask me anything..."
+                        />
+                        <ChatInputActions className="flex items-center justify-end gap-2 pt-2">
+                            <Button
+                                variant="default"
+                                size="icon"
+                                className="h-8 w-8 rounded-full cursor-pointer"
+                                onClick={() => {
+                                    if (status !== "ready") {
+                                        stop();
+                                        return;
+                                    }
+                                    onSubmit();
+                                }}
+                            >
+                                {status !== "ready" ? (
+                                    <Square className="size-5 fill-current" />
+                                ) : (
+                                    <ArrowUp className="size-5" />
+                                )}
+                            </Button>
+                        </ChatInputActions>
+                    </ChatInput>
+                </div>
+            </div>
         </div>
     );
 };

@@ -1,46 +1,34 @@
 "use client";
 
-import { GridPattern } from "@/components/magicui/grid-pattern";
-import { cn } from "@/lib/utils";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { usePathname, useRouter } from "next/navigation";
 
 const queryClient = new QueryClient();
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
+    const router = useRouter();
+    const pathname = usePathname();
+
     return (
-        <div className="relative grid h-full flex-1 place-items-center overflow-hidden">
-            <div className="w-full h-svh flex items-center justify-center z-30">
-                <Provider>{children}</Provider>
-            </div>
-            <GridPattern
-                squares={[
-                    [5, 12],
-                    [6, 16],
-                    [3, 20],
-                    [8, 23],
-                    [2, 25],
-                    [15, 15],
-                    [17, 16],
-                    [20, 20],
-                    [13, 20],
-                    [25, 25],
-                    [16, 27],
-                ]}
-                className={cn(
-                    "[mask-image:radial-gradient(600px_circle_at_center,white,transparent)]",
-                    "-inset-y-1/2 inset-x-0 h-[200%] skew-y-12",
-                )}
-            />
+        <div className="w-full h-svh flex flex-col items-center justify-center z-30">
+            <Tabs
+                className="p-2"
+                defaultValue={pathname}
+                onValueChange={(value) => {
+                    router.push(value);
+                }}
+            >
+                <TabsList>
+                    <TabsTrigger value="/">Chat</TabsTrigger>
+                    <TabsTrigger value="/report">Report</TabsTrigger>
+                </TabsList>
+            </Tabs>
+            <QueryClientProvider client={queryClient}>
+                <div className="w-full flex-1 overflow-auto">{children}</div>
+            </QueryClientProvider>
         </div>
     );
 };
 
 export default Layout;
-
-const Provider = ({ children }: { children: React.ReactNode }) => {
-    return (
-        <QueryClientProvider client={queryClient}>
-            {children}
-        </QueryClientProvider>
-    );
-};
