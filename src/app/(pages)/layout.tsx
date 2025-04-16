@@ -2,26 +2,24 @@
 
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 
 const queryClient = new QueryClient();
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
-    const router = useRouter();
     const pathname = usePathname();
 
     return (
         <div className="w-full h-svh flex flex-col items-center justify-center z-30">
-            <Tabs
-                className="p-2"
-                defaultValue={pathname}
-                onValueChange={(value) => {
-                    router.push(value);
-                }}
-            >
+            <Tabs className="p-2" defaultValue={pathname}>
                 <TabsList>
-                    <TabsTrigger value="/">Chat</TabsTrigger>
-                    <TabsTrigger value="/report">Report</TabsTrigger>
+                    <TabsTrigger value="/">
+                        <Link href="/">Chat</Link>
+                    </TabsTrigger>
+                    <TabsTrigger value="/report" asChild>
+                        <Link href="/report">Report</Link>
+                    </TabsTrigger>
                 </TabsList>
             </Tabs>
             <QueryClientProvider client={queryClient}>
