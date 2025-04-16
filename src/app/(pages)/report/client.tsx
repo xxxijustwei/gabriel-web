@@ -37,10 +37,12 @@ export const Client = () => {
     }
 
     return (
-        <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {data?.map((item) => (
-                <ReportItem key={item.id} {...item} />
-            ))}
+        <div className="w-full h-full py-4 overflow-y-auto">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                {data?.map((item) => (
+                    <ReportItem key={item.id} {...item} />
+                ))}
+            </div>
         </div>
     );
 };
