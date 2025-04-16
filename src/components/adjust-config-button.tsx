@@ -1,6 +1,6 @@
 "use client";
 
-import { getReq, postReq } from "@/axios";
+import { getReq, postReq, putReq } from "@/axios";
 import { Button } from "@/components/ui/button";
 import {
     Dialog,
@@ -106,7 +106,7 @@ export const AdjustConfigButton = () => {
     });
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
-        await postReq({
+        await putReq({
             path: "/api/task-config",
             data: {
                 ...values,
