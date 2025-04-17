@@ -19,7 +19,7 @@ export const Client = () => {
 
     if (!isFetched) {
         return (
-            <div className="flex justify-center items-center h-full">
+            <div className="flex justify-center items-center absolute inset-0">
                 <Loader className="w-8 h-8 animate-spin" />
             </div>
         );
@@ -39,6 +39,9 @@ export const Client = () => {
     return (
         <div className="w-full h-full py-4">
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                {data?.map((item) => (
+                    <ReportItem key={item.id} {...item} />
+                ))}
                 {data?.map((item) => (
                     <ReportItem key={item.id} {...item} />
                 ))}

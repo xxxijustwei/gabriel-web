@@ -132,7 +132,7 @@ export const AdjustConfigButton = () => {
                     <Settings className="w-5 h-5" />
                 </Button>
             </DialogTrigger>
-            <DialogContent className="max-w-md">
+            <DialogContent className="max-w-sm">
                 <DialogHeader>
                     <DialogTitle>Task Config</DialogTitle>
                     <DialogDescription>

@@ -24,7 +24,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
             className={`${unboundedFont.variable} ${monoFont.variable}`}
         >
             <body className="font-unbounded">
-                <div className="relative grid h-full flex-1 place-items-center overflow-hidden">
+                <div className="relative flex min-h-svh flex-col bg-background">
                     {children}
                     <GridPattern
                         squares={[
@@ -42,7 +42,6 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
                         ]}
                         className={cn(
                             "[mask-image:radial-gradient(600px_circle_at_center,white,transparent)]",
-                            "-inset-y-1/2 inset-x-0 h-[200%] skew-y-12",
                         )}
                     />
                 </div>

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 const Page = () => {
     return (
-        <div className="w-full max-w-6xl mx-auto relative">
+        <div className="w-full flex flex-col flex-1 max-w-6xl mx-auto relative">
             <div className="flex items-center gap-2">
                 <span className="text-xl font-bold">Task Report(s)</span>
                 <AdjustConfigButton />

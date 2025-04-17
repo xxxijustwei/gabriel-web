@@ -1,4 +1,5 @@
 import { useScrollToBottom } from "@/hooks/use-scroll-to-bottom";
+import { cn } from "@/lib/utils";
 import type { UseChatHelpers } from "@ai-sdk/react";
 import type { UIMessage } from "ai";
 import equal from "fast-deep-equal";
@@ -18,7 +19,10 @@ function PureMessages({ status, messages }: MessagesProps) {
     return (
         <div
             ref={messagesContainerRef}
-            className="flex flex-col min-w-0 gap-6 flex-1 overflow-y-scroll pt-4 no-scrollbar"
+            className={cn(
+                "flex flex-col min-w-0 gap-6 overflow-y-scroll pt-4 max-w-3xl mx-auto",
+                messages.length > 0 ? "flex-1" : "h-1/2",
+            )}
         >
             {messages.length === 0 && <Welcome />}
 
