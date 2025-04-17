@@ -21,7 +21,7 @@ import {
 import { useDisclosure } from "@/hooks/use-disclosure";
 import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { Loader2, Settings } from "lucide-react";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
@@ -62,6 +62,7 @@ const queryData = async () => {
 };
 
 export const AdjustConfigButton = () => {
+    const queryClient = useQueryClient();
     const { open, onOpenChange, onClose } = useDisclosure();
 
     const { data, isSuccess } = useQuery({
@@ -106,7 +107,7 @@ export const AdjustConfigButton = () => {
     });
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
-        await putReq({
+        const result = await putReq<TaskConfig>({
             path: "/api/task-config",
             data: {
                 ...values,
@@ -114,6 +115,7 @@ export const AdjustConfigButton = () => {
             },
         });
         onClose();
+        queryClient.setQueryData(["task-config"], result);
         toast.success("Config updated");
     };
 

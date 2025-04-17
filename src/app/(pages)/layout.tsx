@@ -22,7 +22,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                     </TabsTrigger>
                 </TabsList>
             </Tabs>
-            <div className="w-full flex-1 overflow-auto">
+            <div className="w-full flex-1 overflow-auto no-scrollbar">
                 <QueryClientProvider client={queryClient}>
                     {children}
                 </QueryClientProvider>
