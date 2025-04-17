@@ -1,6 +1,5 @@
 "use client";
 
-import { getReq, postReq, putReq } from "@/axios";
 import { Button } from "@/components/ui/button";
 import {
     Dialog,
@@ -19,6 +18,7 @@ import {
     FormMessage,
 } from "@/components/ui/form";
 import { useDisclosure } from "@/hooks/use-disclosure";
+import { getReq, putReq } from "@/lib/axios";
 import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useQuery, useQueryClient } from "@tanstack/react-query";

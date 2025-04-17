@@ -1,7 +1,7 @@
 "use client";
 
-import { getReq } from "@/axios";
 import { ReportItem, type ReportItemProps } from "@/components/report-item";
+import { getReq } from "@/lib/axios";
 import { useQuery } from "@tanstack/react-query";
 import { Inbox, Loader } from "lucide-react";
 
