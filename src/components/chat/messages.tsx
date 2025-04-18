@@ -20,8 +20,8 @@ function PureMessages({ status, messages }: MessagesProps) {
         <div
             ref={messagesContainerRef}
             className={cn(
-                "flex flex-col min-w-0 gap-6 overflow-y-scroll pt-4 max-w-3xl mx-auto",
-                messages.length > 0 ? "flex-1" : "h-1/2",
+                "flex flex-col min-w-0 gap-6 pt-4 w-full max-w-3xl mx-auto",
+                messages.length > 0 ? "flex-1 overflow-y-auto" : "h-1/2",
             )}
         >
             {messages.length === 0 && <Welcome />}
