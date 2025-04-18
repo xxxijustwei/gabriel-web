@@ -42,9 +42,6 @@ export const Client = () => {
                 {data?.map((item) => (
                     <ReportItem key={item.id} {...item} />
                 ))}
-                {data?.map((item) => (
-                    <ReportItem key={item.id} {...item} />
-                ))}
             </div>
         </div>
     );
