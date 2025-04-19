@@ -17,6 +17,15 @@ const components: Partial<Components> = {
         />
     ),
     pre: ({ children }) => <>{children}</>,
+    blockquote: ({
+        className,
+        ...props
+    }: React.HTMLAttributes<HTMLElement>) => (
+        <blockquote
+            className={cn("border-l-2 pl-2 italic", className)}
+            {...props}
+        />
+    ),
     ol: ({ node, children, ...props }) => {
         return (
             <ol className="list-decimal list-outside ml-4" {...props}>

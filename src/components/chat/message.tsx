@@ -1,11 +1,12 @@
 "use client";
 
+import type { CustomUIMessage } from "@/lib/ai";
 import { cn } from "@/lib/utils";
-import type { UIMessage } from "ai";
 import equal from "fast-deep-equal";
 import { AnimatePresence, motion } from "framer-motion";
-import { Accessibility, Check, Loader2 } from "lucide-react";
+import { Accessibility, AlertCircle, AppWindowMac } from "lucide-react";
 import { memo } from "react";
+import { Badge } from "../ui/badge";
 import { Markdown } from "./markdown";
 
 const PurePreviewMessage = ({
@@ -13,8 +14,9 @@ const PurePreviewMessage = ({
     message,
 }: {
     isLoading: boolean;
-    message: UIMessage;
+    message: CustomUIMessage;
 }) => {
+    console.log(message.parts);
     return (
         <AnimatePresence>
             <motion.div
@@ -46,20 +48,9 @@ const PurePreviewMessage = ({
                                 return (
                                     <div
                                         key={key}
-                                        className="flex gap-2 items-center w-full py-1"
+                                        className="flex gap-2 items-center w-fit py-1 px-4 border border-border rounded-full bg-accent/60 text-accent-foreground"
                                     >
-                                        <Loader2
-                                            className={cn(
-                                                "size-5 animate-spin",
-                                                state === "result" && "hidden",
-                                            )}
-                                        />
-                                        <Check
-                                            className={cn(
-                                                "size-5",
-                                                state === "call" && "hidden",
-                                            )}
-                                        />
+                                        <AppWindowMac className="size-5 min-w-5" />
                                         <div className="flex flex-col gap-4 text-muted-foreground">
                                             Calling Tool...
                                         </div>
@@ -78,6 +69,18 @@ const PurePreviewMessage = ({
                                     >
                                         <Markdown>{item.text}</Markdown>
                                     </div>
+                                );
+                            }
+                            if (type === "error") {
+                                return (
+                                    <Badge
+                                        key={key}
+                                        variant="error"
+                                        className="w-fit px-4 py-2 text-sm whitespace-break-spaces items-start"
+                                    >
+                                        <AlertCircle className="size-5 min-w-5 mr-1.5" />
+                                        {item.text}
+                                    </Badge>
                                 );
                             }
                         })}
