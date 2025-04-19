@@ -66,7 +66,7 @@ interface ReportDialogProps {
 const ReportDialog = ({ item, open, onOpenChange }: ReportDialogProps) => {
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent className="w-full max-w-3xl">
+            <DialogContent className="w-full max-w-3xl px-2 sm:px-4 bottom-0 translate-y-0 top-auto sm:top-[50%] sm:translate-y-[-50%] sm:bottom-auto">
                 <DialogHeader>
                     <DialogTitle className="hidden" />
                     <DialogDescription className="hidden" />
