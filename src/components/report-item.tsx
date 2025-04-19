@@ -7,7 +7,6 @@ import {
     DialogHeader,
     DialogTitle,
 } from "@/components/ui/dialog";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { useDisclosure } from "@/hooks/use-disclosure";
 import dayjs from "dayjs";
 
@@ -72,11 +71,11 @@ const ReportDialog = ({ item, open, onOpenChange }: ReportDialogProps) => {
                     <DialogTitle className="hidden" />
                     <DialogDescription className="hidden" />
                 </DialogHeader>
-                <ScrollArea className="h-[80vh]">
+                <div className="h-[70vh] overflow-y-auto">
                     <div className="flex flex-col gap-4 p-2">
                         <Markdown>{item.content}</Markdown>
                     </div>
-                </ScrollArea>
+                </div>
             </DialogContent>
         </Dialog>
     );

@@ -35,7 +35,7 @@ const PurePreviewMessage = ({
                         </div>
                     )}
 
-                    <div className="flex flex-col gap-2 w-full">
+                    <div className="flex flex-col gap-2 flex-1 min-w-0">
                         {message.parts.map((item, index) => {
                             const { type } = item;
                             const key = `msg-${message.id}-p-${index}`;

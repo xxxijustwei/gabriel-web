@@ -104,11 +104,8 @@ const components: Partial<Components> = {
         className,
         ...props
     }: React.HTMLAttributes<HTMLTableElement>) => (
-        <div className="w-full overflow-y-auto bg-background rounded-lg border dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-400">
-            <table
-                className={cn("my-0 w-full overflow-hidden", className)}
-                {...props}
-            />
+        <div className="w-full overflow-x-auto bg-background rounded-lg border dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-400">
+            <table className={cn("my-0 w-full", className)} {...props} />
         </div>
     ),
     thead: ({
