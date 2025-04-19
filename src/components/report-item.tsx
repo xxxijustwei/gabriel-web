@@ -43,7 +43,7 @@ export const ReportItem = (item: ReportItemProps) => {
                 </div>
                 <div className="flex justify-end">
                     <Badge variant="neutral">
-                        {dayjs(createdAt).format("DD/MM/YYYY HH:mm:ss")}
+                        {dayjs(createdAt).format("DD/MM/YYYY HH:mm")}
                     </Badge>
                 </div>
             </div>
@@ -71,12 +71,12 @@ const ReportDialog = ({ item, open, onOpenChange }: ReportDialogProps) => {
                 <DialogHeader>
                     <DialogTitle className="hidden" />
                     <DialogDescription className="hidden" />
-                    <ScrollArea className="h-[80vh]">
-                        <div className="flex flex-col gap-4 p-2">
-                            <Markdown>{item.content}</Markdown>
-                        </div>
-                    </ScrollArea>
                 </DialogHeader>
+                <ScrollArea className="h-[80vh]">
+                    <div className="flex flex-col gap-4 p-2">
+                        <Markdown>{item.content}</Markdown>
+                    </div>
+                </ScrollArea>
             </DialogContent>
         </Dialog>
     );

@@ -28,7 +28,7 @@ export const Client = () => {
     return (
         <>
             <Messages status={status} messages={messages} />
-            <div className="flex flex-col gap-2 py-4 w-full max-w-3xl mx-auto">
+            <div className="flex flex-col gap-2 p-2 w-full max-w-3xl mx-auto">
                 <SuggestionActions
                     append={append}
                     className={messages.length > 0 ? "hidden" : ""}
