@@ -24,11 +24,8 @@ export const ReportItem = (item: ReportItemProps) => {
     const { open, onOpen, onOpenChange } = useDisclosure();
 
     return (
-        <div
-            className="aspect-[1/1.4] rounded-lg p-4 bg-background border border-border shadow-md cursor-pointer"
-            onClick={onOpen}
-        >
-            <div className="flex flex-col gap-3 h-full">
+        <div className="aspect-[1/1.4] rounded-lg p-4 bg-background border border-border shadow-md cursor-pointer">
+            <div className="flex flex-col gap-3 h-full" onClick={onOpen}>
                 <div className="flex flex-col gap-1">
                     <div className="flex flex-wrap gap-2">
                         <Badge>{symbol}</Badge>
