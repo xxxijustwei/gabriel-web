@@ -1,12 +1,11 @@
 "use client";
 
-import type { CustomUIMessage } from "@/lib/ai";
 import { cn } from "@/lib/utils";
+import type { UIMessage } from "ai";
 import equal from "fast-deep-equal";
 import { AnimatePresence, motion } from "framer-motion";
-import { Accessibility, AlertCircle, AppWindowMac } from "lucide-react";
+import { Accessibility, AppWindowMac } from "lucide-react";
 import { memo } from "react";
-import { Badge } from "../ui/badge";
 import { Markdown } from "./markdown";
 
 const PurePreviewMessage = ({
@@ -14,9 +13,8 @@ const PurePreviewMessage = ({
     message,
 }: {
     isLoading: boolean;
-    message: CustomUIMessage;
+    message: UIMessage;
 }) => {
-    console.log(message.parts);
     return (
         <AnimatePresence>
             <motion.div
@@ -69,18 +67,6 @@ const PurePreviewMessage = ({
                                     >
                                         <Markdown>{item.text}</Markdown>
                                     </div>
-                                );
-                            }
-                            if (type === "error") {
-                                return (
-                                    <Badge
-                                        key={key}
-                                        variant="error"
-                                        className="w-fit px-4 py-2 text-sm whitespace-break-spaces items-start"
-                                    >
-                                        <AlertCircle className="size-5 min-w-5 mr-1.5" />
-                                        {item.text}
-                                    </Badge>
                                 );
                             }
                         })}

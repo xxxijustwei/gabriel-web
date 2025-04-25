@@ -10,8 +10,7 @@ import { SuggestionActions } from "@/components/chat/suggestion-actions";
 import { Button } from "@/components/ui/button";
 import { useChat } from "@ai-sdk/react";
 import { ArrowUp, Square } from "lucide-react";
-import { nanoid } from "nanoid";
-import { useEffect } from "react";
+import type React from "react";
 
 export const Client = () => {
     const {
@@ -31,51 +30,13 @@ export const Client = () => {
         return ["ready", "error"].includes(status);
     };
 
-    const getLastAssistantMessage = () => {
-        if (messages.length === 0) return null;
-        const lastMessage = messages[messages.length - 1];
-        if (lastMessage.role !== "assistant") return null;
-        return lastMessage;
-    };
-
-    const insertError2LatestMessage = (errorMessage: string) => {
-        const latestMessage = getLastAssistantMessage();
-        if (latestMessage) {
-            setMessages([
-                ...messages.slice(0, -1),
-                {
-                    ...latestMessage,
-                    parts: [
-                        ...latestMessage.parts,
-                        {
-                            type: "error",
-                            text: errorMessage,
-                        },
-                    ],
-                    content: `${latestMessage.content}${errorMessage}\n\n`,
-                    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-                } as any,
-            ]);
-            return;
-        }
-
-        // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-        const message: any = {
-            id: nanoid(),
-            role: "assistant",
-            parts: [
-                {
-                    type: "error",
-                    text: errorMessage,
-                },
-            ],
-            content: errorMessage,
-        };
-        setMessages([...messages, message]);
-    };
-
     const onSubmit = () => {
         if (!isSubmittable()) return;
+
+        if (error != null) {
+            setMessages(messages.slice(0, -1));
+        }
+
         append({
             role: "user",
             content: input,
@@ -83,14 +44,9 @@ export const Client = () => {
         setInput("");
     };
 
-    useEffect(() => {
-        if (!error) return;
-        insertError2LatestMessage(error.message);
-    }, [error]);
-
     return (
         <>
-            <Messages status={status} messages={messages} />
+            <Messages status={status} messages={messages} error={error} />
             <div className="flex flex-col gap-2 p-2 lg:pb-4 w-full max-w-3xl mx-auto">
                 <SuggestionActions
                     append={append}
@@ -112,7 +68,7 @@ export const Client = () => {
                             size="icon"
                             className="h-8 w-8 rounded-full cursor-pointer"
                             onClick={() => {
-                                if (!isSubmittable()) {
+                                if (status === "streaming") {
                                     stop();
                                     return;
                                 }
