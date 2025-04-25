@@ -4,7 +4,7 @@
     "": {
       "name": "gabriel-web",
       "dependencies": {
-        "@ai-sdk/react": "^1.2.8",
+        "@ai-sdk/react": "^1.2.9",
         "@hookform/resolvers": "^5.0.1",
         "@radix-ui/react-dialog": "^1.1.7",
         "@radix-ui/react-label": "^2.1.3",
@@ -14,7 +14,7 @@
         "@radix-ui/react-tabs": "^1.1.4",
         "@radix-ui/react-tooltip": "^1.2.0",
         "@tanstack/react-query": "^5.74.3",
-        "ai": "^4.3.4",
+        "ai": "^4.3.10",
         "axios": "^1.8.4",
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",
@@ -52,13 +52,13 @@
     },
   },
   "packages": {
-    "@ai-sdk/provider": ["@ai-sdk/provider@1.1.2", "", { "dependencies": { "json-schema": "^0.4.0" } }, "sha512-ITdgNilJZwLKR7X5TnUr1BsQW6UTX5yFp0h66Nfx8XjBYkWD9W3yugr50GOz3CnE9m/U/Cd5OyEbTMI0rgi6ZQ=="],
+    "@ai-sdk/provider": ["@ai-sdk/provider@1.1.3", "", { "dependencies": { "json-schema": "^0.4.0" } }, "sha512-qZMxYJ0qqX/RfnuIaab+zp8UAeJn/ygXXAffR5I4N0n1IrvA6qBsjc8hXLmBiMV2zoXlifkacF7sEFnYnjBcqg=="],
 
-    "@ai-sdk/provider-utils": ["@ai-sdk/provider-utils@2.2.6", "", { "dependencies": { "@ai-sdk/provider": "1.1.2", "nanoid": "^3.3.8", "secure-json-parse": "^2.7.0" }, "peerDependencies": { "zod": "^3.23.8" } }, "sha512-sUlZ7Gnq84DCGWMQRIK8XVbkzIBnvPR1diV4v6JwPgpn5armnLI/j+rqn62MpLrU5ZCQZlDKl/Lw6ed3ulYqaA=="],
+    "@ai-sdk/provider-utils": ["@ai-sdk/provider-utils@2.2.7", "", { "dependencies": { "@ai-sdk/provider": "1.1.3", "nanoid": "^3.3.8", "secure-json-parse": "^2.7.0" }, "peerDependencies": { "zod": "^3.23.8" } }, "sha512-kM0xS3GWg3aMChh9zfeM+80vEZfXzR3JEUBdycZLtbRZ2TRT8xOj3WodGHPb06sUK5yD7pAXC/P7ctsi2fvUGQ=="],
 
-    "@ai-sdk/react": ["@ai-sdk/react@1.2.8", "", { "dependencies": { "@ai-sdk/provider-utils": "2.2.6", "@ai-sdk/ui-utils": "1.2.7", "swr": "^2.2.5", "throttleit": "2.1.0" }, "peerDependencies": { "react": "^18 || ^19 || ^19.0.0-rc", "zod": "^3.23.8" }, "optionalPeers": ["zod"] }, "sha512-S2FzCSi4uTF0JuSN6zYMXyiAWVAzi/Hho8ISYgHpGZiICYLNCP2si4DuXQOsnWef3IXzQPLVoE11C63lILZIkw=="],
+    "@ai-sdk/react": ["@ai-sdk/react@1.2.9", "", { "dependencies": { "@ai-sdk/provider-utils": "2.2.7", "@ai-sdk/ui-utils": "1.2.8", "swr": "^2.2.5", "throttleit": "2.1.0" }, "peerDependencies": { "react": "^18 || ^19 || ^19.0.0-rc", "zod": "^3.23.8" }, "optionalPeers": ["zod"] }, "sha512-/VYm8xifyngaqFDLXACk/1czDRCefNCdALUyp+kIX6DUIYUWTM93ISoZ+qJ8+3E+FiJAKBQz61o8lIIl+vYtzg=="],
 
-    "@ai-sdk/ui-utils": ["@ai-sdk/ui-utils@1.2.7", "", { "dependencies": { "@ai-sdk/provider": "1.1.2", "@ai-sdk/provider-utils": "2.2.6", "zod-to-json-schema": "^3.24.1" }, "peerDependencies": { "zod": "^3.23.8" } }, "sha512-OVRxa4SDj0wVsMZ8tGr/whT89oqNtNoXBKmqWC2BRv5ZG6azL2LYZ5ZK35u3lb4l1IE7cWGsLlmq0py0ttsL7A=="],
+    "@ai-sdk/ui-utils": ["@ai-sdk/ui-utils@1.2.8", "", { "dependencies": { "@ai-sdk/provider": "1.1.3", "@ai-sdk/provider-utils": "2.2.7", "zod-to-json-schema": "^3.24.1" }, "peerDependencies": { "zod": "^3.23.8" } }, "sha512-nls/IJCY+ks3Uj6G/agNhXqQeLVqhNfoJbuNgCny+nX2veY5ADB91EcZUqVeQ/ionul2SeUswPY6Q/DxteY29Q=="],
 
     "@alloc/quick-lru": ["@alloc/quick-lru@5.2.0", "", {}, "sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw=="],
 
@@ -378,7 +378,7 @@
 
     "acorn-jsx": ["acorn-jsx@5.3.2", "", { "peerDependencies": { "acorn": "^6.0.0 || ^7.0.0 || ^8.0.0" } }, "sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ=="],
 
-    "ai": ["ai@4.3.4", "", { "dependencies": { "@ai-sdk/provider": "1.1.2", "@ai-sdk/provider-utils": "2.2.6", "@ai-sdk/react": "1.2.8", "@ai-sdk/ui-utils": "1.2.7", "@opentelemetry/api": "1.9.0", "jsondiffpatch": "0.6.0" }, "peerDependencies": { "react": "^18 || ^19 || ^19.0.0-rc", "zod": "^3.23.8" }, "optionalPeers": ["react"] }, "sha512-uMjzrowIqfU8CCCxhx8QGl7ETydHBROeNL0VoEwetkmDCY6Q8ZTacj6jNNqGJOiCk595aUrGR9VHPY9Ylvy1fg=="],
+    "ai": ["ai@4.3.10", "", { "dependencies": { "@ai-sdk/provider": "1.1.3", "@ai-sdk/provider-utils": "2.2.7", "@ai-sdk/react": "1.2.9", "@ai-sdk/ui-utils": "1.2.8", "@opentelemetry/api": "1.9.0", "jsondiffpatch": "0.6.0" }, "peerDependencies": { "react": "^18 || ^19 || ^19.0.0-rc", "zod": "^3.23.8" }, "optionalPeers": ["react"] }, "sha512-jw+ahNu+T4SHj9gtraIKtYhanJI6gj2IZ5BFcfEHgoyQVMln5a5beGjzl/nQSX6FxyLqJ/UBpClRa279EEKK/Q=="],
 
     "ajv": ["ajv@6.12.6", "", { "dependencies": { "fast-deep-equal": "^3.1.1", "fast-json-stable-stringify": "^2.0.0", "json-schema-traverse": "^0.4.1", "uri-js": "^4.2.2" } }, "sha512-j3fVLgvTo527anyYyJOGTYJbG+vnnQYvE0m5mmkc1TK+nxAppkCLMIL0aZ4dblVCNoGShhm+kzE4ZUykBoMg4g=="],
 
