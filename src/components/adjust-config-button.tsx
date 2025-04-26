@@ -22,6 +22,7 @@ import { getReq, putReq } from "@/lib/axios";
 import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
+import dayjs from "dayjs";
 import { Loader2, Settings } from "lucide-react";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
@@ -53,6 +54,7 @@ interface TaskConfig {
     symbol: string;
     interval: IntervalType;
     limit: number;
+    updatedAt: string;
 }
 
 const queryData = async () => {
@@ -136,7 +138,9 @@ export const AdjustConfigButton = () => {
                 <DialogHeader>
                     <DialogTitle>Task Config</DialogTitle>
                     <DialogDescription>
-                        Adjust the task config
+                        {`Last updated: ${dayjs(data?.updatedAt).format(
+                            "DD/MM/YYYY HH:mm:ss",
+                        )}`}
                     </DialogDescription>
                 </DialogHeader>
                 <Form {...form}>
