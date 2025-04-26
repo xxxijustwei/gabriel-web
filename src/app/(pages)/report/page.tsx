@@ -3,8 +3,7 @@ import type { Metadata } from "next";
 import { Client } from "./client";
 
 export const metadata: Metadata = {
-    title: "Gabriel - Analyze",
-    description: "Analyze results",
+    title: "Report(s)",
 };
 
 const Page = () => {
