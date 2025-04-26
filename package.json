@@ -62,6 +62,7 @@
             "biome check --write --no-errors-on-unmatched ./src",
             "biome check --write --organize-imports-enabled=false --no-errors-on-unmatched ./src",
             "biome check --write --unsafe --no-errors-on-unmatched ./src",
+            "biome check --fix --unsafe ./src",
             "biome format --write --no-errors-on-unmatched ./src",
             "biome lint --write --no-errors-on-unmatched ./src"
         ]
