@@ -9,13 +9,12 @@ import {
 } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 import type React from "react";
-import { createContext, useContext, useEffect, useRef, useState } from "react";
+import { createContext, useContext, useRef, useState } from "react";
 
 type ChatInputContextType = {
     isLoading: boolean;
     value: string;
     setValue: (value: string) => void;
-    maxHeight: number | string;
     onSubmit?: () => void;
     disabled?: boolean;
 };
@@ -24,7 +23,6 @@ const ChatInputContext = createContext<ChatInputContextType>({
     isLoading: false,
     value: "",
     setValue: () => {},
-    maxHeight: 240,
     onSubmit: undefined,
     disabled: false,
 });
@@ -41,7 +39,6 @@ type ChatInputProps = {
     isLoading?: boolean;
     value?: string;
     onChange?: (value: string) => void;
-    maxHeight?: number | string;
     onSubmit?: () => void;
     children: React.ReactNode;
     className?: string;
@@ -50,7 +47,6 @@ type ChatInputProps = {
 function ChatInput({
     className,
     isLoading = false,
-    maxHeight = 240,
     value,
     onChange,
     onSubmit,
@@ -70,7 +66,6 @@ function ChatInput({
                     isLoading,
                     value: value ?? internalValue,
                     setValue: onChange ?? handleChange,
-                    maxHeight,
                     onSubmit,
                 }}
             >
@@ -97,19 +92,8 @@ function ChatInputTextarea({
     disableAutosize = false,
     ...props
 }: ChatInputTextareaProps) {
-    const { value, setValue, maxHeight, onSubmit, disabled } = useChatInput();
+    const { value, setValue, onSubmit, disabled } = useChatInput();
     const textareaRef = useRef<HTMLTextAreaElement>(null);
-
-    useEffect(() => {
-        if (disableAutosize) return;
-
-        if (!textareaRef.current) return;
-        textareaRef.current.style.height = "auto";
-        textareaRef.current.style.height =
-            typeof maxHeight === "number"
-                ? `${Math.min(textareaRef.current.scrollHeight, maxHeight)}px`
-                : `min(${textareaRef.current.scrollHeight}px, ${maxHeight})`;
-    }, [value, maxHeight, disableAutosize]);
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
         if (e.key === "Enter" && !e.shiftKey && !e.nativeEvent.isComposing) {

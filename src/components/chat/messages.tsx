@@ -4,7 +4,7 @@ import type { UseChatHelpers } from "@ai-sdk/react";
 import type { UIMessage } from "ai";
 import equal from "fast-deep-equal";
 import { AlertCircle } from "lucide-react";
-import { memo } from "react";
+import { memo, useEffect } from "react";
 import { Badge } from "../ui/badge";
 import { PreviewMessage, ThinkingMessage } from "./message";
 import { Welcome } from "./welcome";
@@ -16,12 +16,19 @@ interface MessagesProps {
 }
 
 function PureMessages({ status, messages, error }: MessagesProps) {
-    const [messagesContainerRef, messagesEndRef] =
+    const { containerRef, endRef, scrollToBottom } =
         useScrollToBottom<HTMLDivElement>();
+
+    useEffect(() => {
+        if (messages.length <= 0) return;
+        if (messages[messages.length - 1].role === "user") {
+            scrollToBottom();
+        }
+    }, [messages, scrollToBottom]);
 
     return (
         <div
-            ref={messagesContainerRef}
+            ref={containerRef}
             className={cn(
                 "flex flex-col min-w-0 gap-6 pt-4 w-full max-w-3xl mx-auto",
                 messages.length > 0 ? "flex-1 overflow-y-auto" : "h-1/2",
@@ -55,7 +62,7 @@ function PureMessages({ status, messages, error }: MessagesProps) {
                     <ThinkingMessage />
                 )}
 
-            <div ref={messagesEndRef} className="shrink-0 min-w-2 min-h-2" />
+            <div ref={endRef} className="shrink-0 min-w-2 min-h-2" />
         </div>
     );
 }
