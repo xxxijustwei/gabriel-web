@@ -4,8 +4,9 @@ import { cn } from "@/lib/utils";
 import type { UIMessage } from "ai";
 import equal from "fast-deep-equal";
 import { AnimatePresence, motion } from "framer-motion";
-import { Accessibility, AppWindowMac } from "lucide-react";
+import { Accessibility } from "lucide-react";
 import { memo } from "react";
+import { DataStreamPreview } from "../data-stream-preview";
 import { Markdown } from "./markdown";
 
 const PurePreviewMessage = ({
@@ -42,18 +43,38 @@ const PurePreviewMessage = ({
 
                             if (type === "tool-invocation") {
                                 const { toolInvocation } = item;
-                                const { state } = toolInvocation;
-                                return (
-                                    <div
-                                        key={key}
-                                        className="flex gap-2 items-center w-fit py-1 px-4 border border-border rounded-full bg-accent/60 text-accent-foreground"
-                                    >
-                                        <AppWindowMac className="size-5 min-w-5" />
-                                        <div className="flex flex-col gap-4 text-muted-foreground">
-                                            Calling Tool...
+                                const { toolName, state } = toolInvocation;
+
+                                if (state === "call") {
+                                    return (
+                                        <div
+                                            key={key}
+                                            className="flex flex-col gap-4"
+                                        >
+                                            {toolName ===
+                                                "getFundingFlowAnalyze" && (
+                                                <DataStreamPreview id={key} />
+                                            )}
                                         </div>
-                                    </div>
-                                );
+                                    );
+                                }
+                                if (state === "result") {
+                                    const { result } = toolInvocation;
+                                    return (
+                                        <div
+                                            key={key}
+                                            className="flex flex-col gap-4"
+                                        >
+                                            {toolName ===
+                                                "getFundingFlowAnalyze" && (
+                                                <DataStreamPreview
+                                                    id={key}
+                                                    result={result}
+                                                />
+                                            )}
+                                        </div>
+                                    );
+                                }
                             }
                             if (type === "text") {
                                 return (

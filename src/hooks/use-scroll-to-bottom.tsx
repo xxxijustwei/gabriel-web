@@ -1,4 +1,4 @@
-import { type RefObject, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 export function useScrollToBottom<T extends HTMLElement>() {
     const containerRef = useRef<T>(null);

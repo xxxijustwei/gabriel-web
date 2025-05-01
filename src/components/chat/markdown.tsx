@@ -1,7 +1,8 @@
 import { cn } from "@/lib/utils";
+import { marked } from "marked";
 import Link from "next/link";
 import type React from "react";
-import { memo } from "react";
+import { memo, useMemo } from "react";
 import ReactMarkdown, { type Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
 
@@ -171,4 +172,42 @@ const NonMemoizedMarkdown = ({ children }: { children: string }) => {
 export const Markdown = memo(
     NonMemoizedMarkdown,
     (prevProps, nextProps) => prevProps.children === nextProps.children,
+);
+
+const parseMarkdownIntoBlocks = (markdown: string) => {
+    const tokens = marked.lexer(markdown);
+    return tokens.map((token) => token.raw);
+};
+
+const MemoizedMarkdownBlock = memo(
+    ({ content }: { content: string }) => {
+        return (
+            <ReactMarkdown
+                remarkPlugins={remarkPlugins}
+                components={components}
+            >
+                {content}
+            </ReactMarkdown>
+        );
+    },
+    (prevProps, nextProps) => {
+        if (prevProps.content !== nextProps.content) return false;
+        return true;
+    },
+);
+
+export const MemoizedMarkdown = memo(
+    ({ content, id }: { content: string; id: string }) => {
+        const blocks = useMemo(
+            () => parseMarkdownIntoBlocks(content),
+            [content],
+        );
+
+        return blocks.map((block, index) => (
+            <MemoizedMarkdownBlock
+                content={block}
+                key={`${id}-block_${index}`}
+            />
+        ));
+    },
 );

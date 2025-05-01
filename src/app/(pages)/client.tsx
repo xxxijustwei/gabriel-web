@@ -7,6 +7,7 @@ import {
 } from "@/components/chat/chat-input";
 import { Messages } from "@/components/chat/messages";
 import { SuggestionActions } from "@/components/chat/suggestion-actions";
+import { DataStreamHandler } from "@/components/data-stream-handler";
 import { Button } from "@/components/ui/button";
 import { useChat } from "@ai-sdk/react";
 import { ArrowUp, Square } from "lucide-react";
@@ -18,6 +19,7 @@ export const Client = () => {
         messages,
         input,
         error,
+        data,
         setInput,
         setMessages,
         append,
@@ -46,6 +48,7 @@ export const Client = () => {
 
     return (
         <>
+            <DataStreamHandler data={data ?? []} />
             <Messages status={status} messages={messages} error={error} />
             <div className="flex flex-col gap-2 p-2 lg:pb-4 w-full max-w-3xl mx-auto">
                 <SuggestionActions
