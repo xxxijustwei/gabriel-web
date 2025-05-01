@@ -1,16 +1,10 @@
 "use client";
 
-import {
-    ChatInput,
-    ChatInputActions,
-    ChatInputTextarea,
-} from "@/components/chat/chat-input";
+import { ChatInputBox } from "@/components/chat/chat-input-box";
 import { Messages } from "@/components/chat/messages";
 import { SuggestionActions } from "@/components/chat/suggestion-actions";
 import { DataStreamHandler } from "@/components/data-stream-handler";
-import { Button } from "@/components/ui/button";
 import { useChat } from "@ai-sdk/react";
-import { ArrowUp, Square } from "lucide-react";
 import type React from "react";
 
 export const Client = () => {
@@ -55,37 +49,13 @@ export const Client = () => {
                     append={append}
                     className={messages.length > 0 ? "hidden" : ""}
                 />
-                <ChatInput
-                    value={input}
-                    onChange={setInput}
-                    className="w-full"
+                <ChatInputBox
+                    input={input}
+                    setInput={setInput}
                     onSubmit={onSubmit}
-                >
-                    <ChatInputTextarea
-                        className="max-h-32"
-                        placeholder="Ask me anything..."
-                    />
-                    <ChatInputActions className="flex items-center justify-end gap-2 pt-2">
-                        <Button
-                            variant="default"
-                            size="icon"
-                            className="h-8 w-8 rounded-full cursor-pointer"
-                            onClick={() => {
-                                if (status === "streaming") {
-                                    stop();
-                                    return;
-                                }
-                                onSubmit();
-                            }}
-                        >
-                            {!isSubmittable() ? (
-                                <Square className="size-5 fill-current" />
-                            ) : (
-                                <ArrowUp className="size-5" />
-                            )}
-                        </Button>
-                    </ChatInputActions>
-                </ChatInput>
+                    status={status}
+                    stop={stop}
+                />
             </div>
         </>
     );
