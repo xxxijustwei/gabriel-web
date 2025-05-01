@@ -13,8 +13,6 @@ export const DataStreamPreview = ({ id, result }: DataStreamPreviewProps) => {
         streamData: { status, content },
     } = useDataStream();
 
-    console.log(status, content.slice(0, 10));
-
     if (result) {
         return <MemoizedMarkdown content={result} id={id} />;
     }
