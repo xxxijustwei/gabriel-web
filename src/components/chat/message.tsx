@@ -7,7 +7,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Accessibility } from "lucide-react";
 import { memo } from "react";
 import { DataStreamPreview } from "../data-stream-preview";
-import { Markdown } from "./markdown";
+import { MemoizedMarkdown } from "./markdown";
 
 const PurePreviewMessage = ({
     isLoading,
@@ -86,7 +86,10 @@ const PurePreviewMessage = ({
                                                 "bg-primary text-primary-foreground px-3 py-2 rounded-xl",
                                         )}
                                     >
-                                        <Markdown>{item.text}</Markdown>
+                                        <MemoizedMarkdown
+                                            content={item.text}
+                                            id={key}
+                                        />
                                     </div>
                                 );
                             }

@@ -5,7 +5,14 @@ import type { JSONValue } from "ai";
 import { useEffect, useRef } from "react";
 
 export type DataStreamDelta = {
-    type: "text-delta" | "clear" | "finish";
+    type:
+        | "id"
+        | "symbol"
+        | "interval"
+        | "amount"
+        | "text-delta"
+        | "clear"
+        | "finish";
     content: string;
 };
 
@@ -24,6 +31,10 @@ export const DataStreamHandler = ({ data }: { data: JSONValue[] }) => {
         for (const delta of newDeltas) {
             if (delta.type === "clear") {
                 setStreamData({
+                    id: "",
+                    symbol: "",
+                    interval: "",
+                    amount: "",
                     content: "",
                     status: "streaming",
                 });
@@ -38,9 +49,17 @@ export const DataStreamHandler = ({ data }: { data: JSONValue[] }) => {
                 continue;
             }
 
+            if (delta.type === "text-delta") {
+                setStreamData((prev) => ({
+                    ...prev,
+                    content: prev.content + delta.content,
+                }));
+                continue;
+            }
+
             setStreamData((prev) => ({
                 ...prev,
-                content: prev.content + delta.content,
+                [delta.type]: delta.content,
             }));
         }
     }, [data, streamData, setStreamData]);
