@@ -5,16 +5,14 @@ import { getReq } from "@/lib/axios";
 import { useQuery } from "@tanstack/react-query";
 import { Inbox, Loader } from "lucide-react";
 
-const queryData = async () => {
-    return await getReq<ReportItemProps[]>({
-        path: "/api/report/list",
-    });
-};
-
 export const Client = () => {
     const { isFetched, data } = useQuery({
         queryKey: ["task-report"],
-        queryFn: queryData,
+        queryFn: async () => {
+            return await getReq<ReportItemProps[]>({
+                path: "/api/analysis-report/list",
+            });
+        },
     });
 
     if (!isFetched) {
