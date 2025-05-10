@@ -109,15 +109,26 @@ export const AdjustConfigButton = () => {
     });
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
-        const result = await putReq<TaskConfig>({
+        const { success } = await putReq<{ success: boolean }>({
             path: "/api/task-config",
             data: {
                 ...values,
                 symbol: values.symbol.toUpperCase(),
             },
         });
+
+        if (!success) {
+            toast.error("Failed to update config");
+            onClose();
+            return;
+        }
+
         onClose();
-        queryClient.setQueryData(["task-config"], result);
+        queryClient.setQueryData(["task-config"], (prev: TaskConfig) => ({
+            ...prev,
+            ...values,
+            updatedAt: dayjs().toISOString(),
+        }));
         toast.success("Config updated");
     };
 
