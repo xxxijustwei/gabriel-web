@@ -2,6 +2,7 @@
 
 import { type AnalysisReport, ReportItem } from "@/components/report-item";
 import { Pagination } from "@/components/wed/pagination";
+import { useDeviceDetection } from "@/hooks/use-device-detection";
 import { getReq } from "@/lib/axios";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { Inbox, Loader } from "lucide-react";
@@ -13,6 +14,7 @@ interface TaskReportsProps {
 }
 
 export const Client = () => {
+    const device = useDeviceDetection();
     const [pagination, setPagination] = useState({
         pageNo: 0,
         pageSize: 8,
@@ -73,6 +75,7 @@ export const Client = () => {
                         pageNo,
                     }));
                 }}
+                siblings={device === "mobile" ? 1 : 2}
             />
         </div>
     );
